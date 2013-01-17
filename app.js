@@ -4,7 +4,9 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
+  , routes = require('./routes/index')
+  , websocket = require('./routes/websocket')
+  , webworker = require('./routes/webworker')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path');
@@ -27,7 +29,13 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+app.locals({
+    title: 'Kitchensink'
+});
+
 app.get('/', routes.index);
+app.get('/websocket', websocket.index);
+app.get('/webworker', webworker.index);
 app.get('/users', user.list);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
@@ -55,20 +63,24 @@ var connections = [];
 wssChat.on('connection', function(ws) {
     connections.push(ws);
     connections.forEach(function(ws) {
-        ws.send('a client connected. now, ' + connections.length + ' client(s) are connecting.');
+        if (!ws) return;
+        ws.send('User' + connections.length + ' connected.');
     });
 
     ws.on('message', function(message) {
+        var index = connections.indexOf(ws);
         connections.forEach(function(ws) {
-            ws.send(message);
+            if (!ws) return;
+            ws.send('User' + (index + 1) + ': ' + message);
         });
     })
 
     ws.on('close', function() {
         var index = connections.indexOf(ws);
-        connections.splice(index, 1);
+        connections.splice(index, 1, undefined);
         connections.forEach(function(ws) {
-            ws.send('a client disconnected. now, ' + connections.length + 'client(s) are connecting.');
+            if (!ws) return;
+            ws.send('User' + (index + 1) + ' disconnected.');
         });
     })
 });

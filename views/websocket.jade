@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    header
+        h1= title
+    h2 Echo Server
+    label
+        h3 sender
+        textarea(id='input') hello WebSocket
+        button(id='sendButton') Send
+    label
+        h3 receiver
+        output(id='output')
+    h2 Chat
+    label
+        h3 sender
+        textarea(id='speakMessage')
+        button(id='speakButton') Speak
+    label
+        h3 receiver
+        output(id='conversation')
+    script(src='javascripts/websocket.js')

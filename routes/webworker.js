@@ -4,5 +4,5 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Kitchensink' });
+  res.render('webworker', {title: 'WebWorker'});
 };
