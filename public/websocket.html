@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <script src="javascripts/jquery-1.9.0.js"></script>
+</head>
+<body>
+<header>
+    <h1>WebSocket Echo Server</h1>
+</header>
+<label>
+    <h2>sender</h2>
+    <textarea id="input">hello WebSocket</textarea>
+    <button id="sendButton">Send</button>
+</label>
+<label>
+    <h2>receiver</h2>
+    <output id="output"></output>
+</label>
+<header>
+    <h1>WebSocket Chat Server</h1>
+</header>
+<label>
+    <h2>sender</h2>
+    <textarea id="speakMessage"></textarea>
+    <button id="speakButton">Speak</button>
+</label>
+<label>
+    <h2>receiver</h2>
+    <output id="conversation"></output>
+</label>
+</body>
+<script src="javascripts/websocket.js"></script>
+</html>
