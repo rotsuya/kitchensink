@@ -4,9 +4,9 @@ block content
     head
         h1= title
     label from
-        input(id='fromNumber', type='number', value='2')
+        input#fromNumber(type='number', value='2')
     label to
-        input(id='toNumber', type='number', value='999999')
-    button(id='startButton') Start
-    output(id='output')
+        input#toNumber(type='number', value='999999')
+    button#startButton Start
+    output#output
     script(src='javascripts/webworker.js')

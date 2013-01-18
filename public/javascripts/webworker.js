@@ -12,7 +12,7 @@ worker.addEventListener('message', function(event) {
     outputHtml = event.data.reduce(function(html, value) {
         return html + ', ' + value;
     });
-    $('#output').append(outputHtml);
+    $('#output').html(outputHtml);
 }, false);
 
 $('#startButton').on('click', function() {

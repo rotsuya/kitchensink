@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    head
+        h1= title
+    h2 input
+    input#files(type='file', multiple='multiple')
+    div#dropArea Drop files or directries here
+    h2 output
+    script(src='javascripts/file.js')
